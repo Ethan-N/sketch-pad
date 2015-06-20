@@ -1,25 +1,5 @@
-$(document).ready(function(){
-    for(var i = 0; i < 16; i++){        
-       $('#container').append("<div class = \"row\"></div>");   
-    }
-    for(var i = 0; i < 16; i++){        
-       $('.row').append("<div class = \"column\"></div>");   
-    }
-    $('.column').fadeTo('0', 0);
-    $('.row').css('width', '6.25%');
-    $('.row').css('height', '100%');
-    $('.row').css('display', 'inline-block');
-    $('.column').css('height', '6.25%');
-    $('.column').css('width', '100%');
-    $('.column').css('background-color', 'blue');
-    $('.column').hover(function(){
-        	$(this).fadeTo('slow', 1);
-    	});
-    $('button').click(function(){
-        $('.column').fadeTo('0', 0);
-        var size = prompt("Please enter a grid size.");
-        $('#container').empty();
-        for(var i = 0; i < size; i++){        
+function fill(size){
+	for(var i = 0; i < size; i++){        
        		$('#container').append("<div class = \"row\"></div>");   
   		}
     	for(var i = 0; i < size; i++){        
@@ -32,9 +12,28 @@ $(document).ready(function(){
    		$('.row').css('display', 'inline-block');
    		$('.column').css('height', percent +'%');
    		$('.column').css('width', '100%');
-   		$('.column').css('background-color', 'blue');	
+   		$('.column').css('background-color', 'black');	
  	    $('.column').hover(function(){
-        $(this).fadeTo('slow', 1);
+        	$(this).fadeTo('slow', 1);
+    	});
+}
+$(document).ready(function(){
+    fill(16);
+    $('#solid').click(function(){
+        $('.column').fadeTo('0', 0);
+        var size = prompt("Please enter a grid size.");
+        $('#container').empty();
+        fill(size);
+    });
+    $('#random').click(function(){
+        $('.column').fadeTo('0', 0);
+        var size = prompt("Please enter a grid size.");
+        $('#container').empty();
+        fill(size);
+        $('.column').hover(function(){
+        	var rgb = 'rgb(' + Math.round(Math.random()*256) +',' + Math.round(Math.random()*256) + ',' + Math.round(Math.random()*256) + ')';
+        	$(this).css({'background-color': rgb});
+        	$(this).fadeTo('slow', 1);
     	});
     });
 });
