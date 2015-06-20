@@ -36,4 +36,18 @@ $(document).ready(function(){
         	$(this).fadeTo('slow', 1);
     	});
     });
+    $('#slow').click(function(){
+        $('.column').fadeTo('0', 0);
+        var size = prompt("Please enter a grid size.");
+        $('#container').empty();
+        fill(size);
+        $('.column').unbind();
+        $('.column').mouseenter(function(){
+        	if($(this).css('opacity') < 1){
+        		var newOpacity = Number($(this).css('opacity')) + .1;
+        		console.log(newOpacity);
+        		$(this).fadeTo('fast', newOpacity);
+        	}
+    	});
+    });
 });
